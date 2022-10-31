@@ -1,17 +1,16 @@
 let mensagens = [];
-const mensagensTeste = [
-    {from: 'João', to: 'Todos', text: 'entra na sala...', type: 'status', time: '09:21:45'},
-    {from: 'João', to: 'Todos', text: 'Bom dia', type: 'message', time: '09:22:28'},
-    {from: 'Maria', to: 'João', text: 'Oi João :)', type: 'message', time: '09:22:38'},
-    {from: 'João', to: 'Maria', text: 'Oi gatinha quer tc?', type: 'private_message', time: '09:22:48'},
-    {from: 'Maria', to: 'Todos', text: 'sai da sala...', type: 'status', time: '09:22:58'}
-];
 
+function carregarMensagens(){
+    const promessa = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
+    console.log(promessa);
 
-const promessa = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
-console.log(promessa);
+    promessa.then(processarMensagens);
 
-promessa.then(processarMensagens);
+}
+//const promessa = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
+//console.log(promessa);
+
+//promessa.then(processarMensagens);
 //promessa.catch(quandoErro);
 
 //const elementoQueQueroQueApareca = document.querySelector('.mensagens');
@@ -56,11 +55,14 @@ function renderizarMensagens(){
             <div class="mensagem private">
                 <div class="hora"><p>${mensagem.time}</p> </div>
                 <div class="msgm"><strong>${mensagem.from}</strong> reservadamente para <strong>${mensagem.to}</strong>: ${mensagem.text}</div>
-          </div>            
+            </div>            
         `;
-        }
-    }
-
+        }        
+    } 
+    
+    const element = document.querySelector('.container-principal');
+    console.log(element);
+    element.scrollIntoView(false);
 }
 
-
+carregarMensagens();
