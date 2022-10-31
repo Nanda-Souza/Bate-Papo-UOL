@@ -1,25 +1,17 @@
 let mensagens = [];
+let novoUsuario = "";
 
 function carregarMensagens(){
     const promessa = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
-    console.log(promessa);
-
+    //console.log(promessa);
     promessa.then(processarMensagens);
 
 }
-//const promessa = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
-//console.log(promessa);
-
-//promessa.then(processarMensagens);
-//promessa.catch(quandoErro);
-
-//const elementoQueQueroQueApareca = document.querySelector('.mensagens');
-//elementoQueQueroQueApareca.scrollIntoView();
 
 function processarMensagens(resposta) {
-    console.log(resposta);
+    //console.log(resposta);
     mensagens = resposta.data;
-	console.log(mensagens);
+	//console.log(mensagens);
 
     renderizarMensagens();
 }
@@ -62,7 +54,37 @@ function renderizarMensagens(){
     
     const element = document.querySelector('.container-principal');    
     element.scrollIntoView(false);
+    
 }
 
-//carregarMensagens();
+function acessarChat(){
+    const nomeUsuario = prompt("Qual é o seu lindo nome?");
+
+    novoUsuario = {
+        name: nomeUsuario
+    };
+
+    const promessa = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants', novoUsuario);
+    promessa.then(carregarMensagens);
+    promessa.catch(tentarNovamente);
+}
+
+function tentarNovamente(){
+    const nomeUsuario = prompt("Nome se encontra em uso, favor digitar outro nome?");
+
+    novoUsuario = {
+        name: nomeUsuario
+    };
+
+    const promessa = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants', novoUsuario);
+    promessa.then(carregarMensagens);
+    promessa.catch(tentarNovamente);
+}
+
+acessarChat();
 setInterval(carregarMensagens, 3000);
+
+
+
+
+//carregarMensagens();
