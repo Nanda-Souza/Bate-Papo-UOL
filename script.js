@@ -42,7 +42,7 @@ function renderizarMensagens(){
             </div>            
         `;
         }
-        else {
+        else if (mensagem.from === novoUsuario) {
             listaMensagens.innerHTML += `            
             <div class="mensagem private">
                 <div class="hora"><p>${mensagem.time}</p> </div>
