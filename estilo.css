@@ -91,6 +91,7 @@ body {
     height: 100%;
     line-height: 16px;
     background-color: #FFFFFF;
+    word-break: break-all;
     color: black;
  }
 

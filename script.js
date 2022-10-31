@@ -60,9 +60,9 @@ function renderizarMensagens(){
         }        
     } 
     
-    const element = document.querySelector('.container-principal');
-    console.log(element);
+    const element = document.querySelector('.container-principal');    
     element.scrollIntoView(false);
 }
 
-carregarMensagens();
+//carregarMensagens();
+setInterval(carregarMensagens, 3000);
