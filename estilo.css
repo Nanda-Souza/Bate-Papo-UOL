@@ -113,13 +113,15 @@ body {
 
  .msgm{
     margin-top: 10px;
-    margin-left: 8px;
+    margin-left: 10px;
+    width: 290px;
     margin-bottom: 10px;
     font-size: 14px;
     line-height: 18px;
  }
 
  .hora{
+    float: left;
     margin-top: 12px;
     margin-left: 8px;
     font-size: 14px;

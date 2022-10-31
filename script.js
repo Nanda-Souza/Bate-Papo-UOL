@@ -1,6 +1,9 @@
 let mensagens = [];
 let novoUsuario = [];
+let mensagemUsuario = [];
 let nomeUsuario = "";
+let mensagemInput = "";
+
 
 function carregarMensagens(){
     const promessa = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
@@ -80,6 +83,24 @@ function tentarNovamente(){
     const promessa = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants', novoUsuario);
     promessa.then(carregarMensagens);
     promessa.catch(tentarNovamente);
+}
+
+
+function enviarMessagem(){
+    mensagemInput = document.querySelector('.mensagem-chat').value;
+	
+	mensagemUsuario = {
+		from: nomeUsuario,
+		to: "Todos",
+		text: mensagemInput,
+		type: "message"
+		
+	}
+
+    const promessa = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', mensagemUsuario);
+    promessa.then(renderizarMensagens());
+    //promessa.then(console.log(promessa));
+    
 }
 
 function manterConexao(){
