@@ -1,5 +1,6 @@
 let mensagens = [];
-let novoUsuario = "";
+let novoUsuario = [];
+let nomeUsuario = "";
 
 function carregarMensagens(){
     const promessa = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
@@ -42,7 +43,7 @@ function renderizarMensagens(){
             </div>            
         `;
         }
-        else if (mensagem.from === novoUsuario) {
+        else if (mensagem.from === nomeUsuario) {
             listaMensagens.innerHTML += `            
             <div class="mensagem private">
                 <div class="hora"><p>${mensagem.time}</p> </div>
@@ -58,7 +59,7 @@ function renderizarMensagens(){
 }
 
 function acessarChat(){
-    const nomeUsuario = prompt("Qual é o seu lindo nome?");
+    nomeUsuario = prompt("Qual é o seu lindo nome?");
 
     novoUsuario = {
         name: nomeUsuario
@@ -81,8 +82,14 @@ function tentarNovamente(){
     promessa.catch(tentarNovamente);
 }
 
+function manterConexao(){
+    const promessa = axios.post('https://mock-api.driven.com.br/api/v6/uol/status', novoUsuario);
+    promessa.then(console.log("Reconectado!"));    
+}
+
 acessarChat();
 setInterval(carregarMensagens, 3000);
+setInterval(manterConexao, 5000);
 
 
 
