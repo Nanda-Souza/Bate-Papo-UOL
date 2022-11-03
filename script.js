@@ -32,7 +32,7 @@ function renderizarMensagens(){
 
         if (mensagem.type === 'status'){
             listaMensagens.innerHTML += `
-            <div class="mensagem status">
+            <div class="mensagem status" data-test="message">
                 <div class="hora"><p>${mensagem.time}</p> </div>
                 <div class="msgm"><strong>${mensagem.from}</strong> ${mensagem.text}</div>
             </div>            
@@ -40,7 +40,7 @@ function renderizarMensagens(){
         }        
         else if (mensagem.type === 'message'){
             listaMensagens.innerHTML += `
-            <div class="mensagem">
+            <div class="mensagem" data-test="message>
                 <div class="hora"><p>${mensagem.time}</p> </div>
                 <div class="msgm"><strong>${mensagem.from}</strong> para <strong>${mensagem.to}</strong>: ${mensagem.text}</div>
             </div>            
@@ -48,7 +48,7 @@ function renderizarMensagens(){
         }
         else if (mensagem.from === nomeUsuario) {
             listaMensagens.innerHTML += `            
-            <div class="mensagem private">
+            <div class="mensagem private" data-test="message">
                 <div class="hora"><p>${mensagem.time}</p> </div>
                 <div class="msgm"><strong>${mensagem.from}</strong> reservadamente para <strong>${mensagem.to}</strong>: ${mensagem.text}</div>
             </div>            
