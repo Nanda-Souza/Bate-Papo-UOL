@@ -40,7 +40,7 @@ function renderizarMensagens(){
         }        
         else if (mensagem.type === 'message'){
             listaMensagens.innerHTML += `
-            <div class="mensagem" data-test="message>
+            <div class="mensagem" data-test="message">
                 <div class="hora"><p>${mensagem.time}</p> </div>
                 <div class="msgm"><strong>${mensagem.from}</strong> para <strong>${mensagem.to}</strong>: ${mensagem.text}</div>
             </div>            
